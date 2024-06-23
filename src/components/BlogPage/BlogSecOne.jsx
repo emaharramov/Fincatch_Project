@@ -59,7 +59,7 @@ function BlogSecOne() {
   return (
     <>
       <div className="w-[90%] lg:w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 my-[120px]">
-        {info.map((blogItem, index) => (
+        {info && info.map((blogItem, index) => (
           <div key={index}>
             <img
               className="w-full h-[200px] bg-gray-200 rounded-t-[10px]"
