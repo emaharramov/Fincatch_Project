@@ -1,0 +1,6 @@
+.hoverT {
+  transition: 0.3s;
+}
+.hoverM:hover .hoverT {
+  color: #e1ffa0;
+}

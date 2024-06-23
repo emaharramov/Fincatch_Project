@@ -1,0 +1,25 @@
+footer > div > div > span {
+  color: #95c2c2;
+  padding: 3px 0px;
+  margin-top: 4px;
+  filter: brightness(0.95);
+  transition: 0.3s;
+  cursor: pointer;
+  font-family: "Plus+Jakarta+Sans";
+}
+footer > div > div > span:hover {
+  filter: brightness(1.1);
+}
+footer > div > div > span > a {
+  font-size: 14px;
+}
+.icons > div,
+label {
+  transition: 0.3s;
+  cursor: pointer;
+  filter: brightness(0.95);
+}
+.icons > div:hover,
+label:hover {
+  filter: brightness(1.1);
+}

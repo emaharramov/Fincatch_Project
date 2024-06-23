@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+* {
+  font-family: "Plus+Jakarta+Sans";
+  color: #222222;
+  font-size: 12px;
+}
+.container {
+  margin: 0 auto;
+}
+.headerF,
+.slideB {
+  width: 90%;
+  margin: auto;
+}
+.slide {
+  background: url("/assets/img/bg.png") center/contain;
+}
+.customBg {
+  background: url("/assets/img/customBg.png") center/cover;
+}
+.showMenuOp {
+  transition: 0.5s;
+}
+.menuTxt li {
+  color: white;
+}
+.menuGosterme {
+  display: none;
+  transition: .3s;
+  opacity: 0;
+}
+.menuGoster {
+  display: flex!important;
+  opacity: 100!important;
+}
+.menuTxtOther li {
+  color: #242528;
+  transition: .3s;
+  border-radius: 5px;
+}
+.menuTxtOther li:hover {
+  background-color: white;
+}
+.menu li {
+  padding: 7px 9px;
+  margin: 0 7px;
+}
+.menu li a {
+  letter-spacing: 0.5px;
+  font: 1.4em "Plus+Jakarta+Sans";
+  transition: 0.2s;
+  filter: brightness(0.9);
+}
+.menu li a:hover {
+  filter: brightness(1);
+}
+button {
+  transition: 0.3s;
+  cursor: pointer;
+  filter: brightness(0.95);
+}
+button:hover {
+  filter: brightness(1.1);
+}
+@media only screen and (min-width: 900px) {
+  .menu {
+    display: flex;
+  }
+}
