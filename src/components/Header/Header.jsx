@@ -8,7 +8,7 @@ import AboutHead from "../AboutPage/AboutHead";
 import PrincgHead from "../Pricing/PrincgHead";
 import BlogHead from "../BlogPage/BlogHead";
 import ContactHead from "../ContactPage/ContactHead";
-import '../../../node_modules/hamburgers/dist/hamburgers.min.css'
+import '../../../node_modules/hamburgers/dist/hamburgers.css'
 
 const Header = (props) => {
   const { className, classNameTx, menuTxt, hidden, page } = props;
@@ -67,6 +67,7 @@ const Header = (props) => {
                   </li>
                 </ul>
               </div>
+
               <div
                 className={`absolute z-10 h-[100vh] text-black w-full top-[0px] left-0 lg:hidden ${
                   showMenu ? "bg-[#00000089] flex showMenuOp" : "bg-[initial] hidden showMenuOp"
@@ -84,10 +85,10 @@ const Header = (props) => {
                     }`}
                   >
                     <div className="h-[50vh] flex flex-col justify-evenly">
-                      <li
+                      <li 
                         className="text-[13px] cursor-pointer hover:shadow-[#33333370] border-b-[1px] shadow-xl shadow-[#33333341]"
                       >
-                        <Link to="/">Home Page</Link>
+                      <Link to={'/'}>Home Page</Link>
                       </li>
                       <li
                         className="text-[13px] cursor-pointer hover:shadow-[#33333370] border-b-[1px] shadow-xl shadow-[#33333341]"
