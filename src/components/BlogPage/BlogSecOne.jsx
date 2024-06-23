@@ -5,7 +5,7 @@ import FadeLoader from "react-spinners/FadeLoader";
 
 
 const url =
-  "https://newsapi.org/v2/everything?q=keyword&apiKey=ddcb7be140d34c6e8afe2633ee5520aa";
+  "https://newsapi.org/v2/everything?q=tesla&from=2024-05-23&sortBy=publishedAt&apiKey=ddcb7be140d34c6e8afe2633ee5520aa";
 
 function BlogSecOne() {
   let date = new Date();
