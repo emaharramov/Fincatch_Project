@@ -3,14 +3,12 @@ import "./Blog.css";
 import NotFound from "../NotFound/NotFound";
 import FadeLoader from "react-spinners/FadeLoader";
 
-
-const url =
-  "https://newsapi.org/v2/everything?q=tesla&from=2024-05-23&sortBy=publishedAt&apiKey=ddcb7be140d34c6e8afe2633ee5520aa";
+const url = "https://newsapi.org/v2/everything?q=tesla&from=2024-05-23&sortBy=publishedAt&apiKey=ddcb7be140d34c6e8afe2633ee5520aa";
 
 function BlogSecOne() {
   let date = new Date();
-  let day = new Date().getDay();
-  let year = new Date().getFullYear();
+  let day = date.getDate(); // Ayın gününü almak için düzeltildi
+  let year = date.getFullYear();
   let month = date.getMonth();
   let months = [
     "January",
@@ -30,28 +28,55 @@ function BlogSecOne() {
 
   const [info, setInfo] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(6); // Adjust items per page as needed
+  const [itemsPerPage, setItemsPerPage] = useState(6); 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getNews() {
-      const response = await fetch(
-        `${url}&page=${currentPage}&pageSize=${itemsPerPage}`
-      );
-      const data = await response.json();
-      setInfo(data.articles);
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(`${url}&page=${currentPage}&pageSize=${itemsPerPage}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        if (data.articles) {
+          setInfo(data.articles);
+        } else {
+          throw new Error("No articles found in the response");
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     }
 
     getNews();
   }, [currentPage, itemsPerPage]);
 
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '20px 0' }}>
+        <FadeLoader color="#36d7b7" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '20px 0', color: 'red' }}>
+        {error}
+      </div>
+    );
+  }
+
   if (info.length === 0) {
     return (
-      <div style={{
-        display:'flex',
-        justifyContent:'center',
-        padding:'20px 0'
-      }}>
-        <FadeLoader color="#36d7b7"/>
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '20px 0' }}>
+        <p>No articles found</p>
       </div>
     );
   }
@@ -59,15 +84,11 @@ function BlogSecOne() {
   return (
     <>
       <div className="w-[90%] lg:w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 my-[120px]">
-        {info && info.map((blogItem, index) => (
+        {info.map((blogItem, index) => (
           <div key={index}>
             <img
               className="w-full h-[200px] bg-gray-200 rounded-t-[10px]"
-              src={
-                blogItem.urlToImage
-                  ? blogItem.urlToImage
-                  : "https://static-00.iconduck.com/assets.00/404-page-not-found-illustration-2048x998-yjzeuy4v.png"
-              }
+              src={blogItem.urlToImage ? blogItem.urlToImage : "https://static-00.iconduck.com/assets.00/404-page-not-found-illustration-2048x998-yjzeuy4v.png"}
               alt={blogItem.title}
             />
 
@@ -97,8 +118,6 @@ function BlogSecOne() {
           </div>
         ))}
       </div>
-      {/* Pagination UI (Optional) */}
-      {/* Example: */}
       <div className="flex justify-center my-4">
         <button
           onClick={() => setCurrentPage(prevPage => prevPage - 1)}
