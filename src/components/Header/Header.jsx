@@ -8,7 +8,7 @@ import AboutHead from "../AboutPage/AboutHead";
 import PrincgHead from "../Pricing/PrincgHead";
 import BlogHead from "../BlogPage/BlogHead";
 import ContactHead from "../ContactPage/ContactHead";
-import '../../../node_modules/hamburgers/dist/hamburgers.css'
+import './Hamburgers.css'
 
 const Header = (props) => {
   const { className, classNameTx, menuTxt, hidden, page } = props;
